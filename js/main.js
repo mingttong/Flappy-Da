@@ -4,20 +4,20 @@
 
 console.log('Flappy-Da!');
 
-var SCORESOUNDS_NUM = 18,
-    HURTSOUNDS_NUM = 15,
+var SCORESOUNDS_NUM = 14,
+    HURTSOUNDS_NUM = 7,
     WINDOW_WIDTH = 480,
     WINDOW_HEIGHT = 700,
     SPEED = 390,
-    GRAVITY = 3000,
-    FLYSPEED = -700,
+    GRAVITY = 2000,
+    FLYSPEED = -500,
     XUEQIAN_WIDTH = 80,
     XUEQIAN_HEIGHT = 91,
     TITLE_WIDTH = 0,
     TITLE_HEIGHT = 0,
     GROUND_HEIGHT = 112,
     GAP = 250,
-    PIPE_WIDTH = 52,
+    PIPE_WIDTH = 150,
     PIPE_HEIGHT = 500,
     POSITION_MIN = GAP / 2 + 35,
     POSITION_MAX = WINDOW_HEIGHT - GAP / 2 - GROUND_HEIGHT - 50;
@@ -388,8 +388,8 @@ game.States.play = function () {
         this.gameOverGroup = game.add.group(); // 添加一个gameOverGroup组
         var gameOverText = this.gameOverGroup.create(WINDOW_WIDTH / 2, 0, 'game_over'); // game over 文字图片
         var scoreboard = this.gameOverGroup.create(WINDOW_WIDTH / 2, 100, 'score_board'); // 分数板
-        var currentScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 35, 305, 'flappy_font', this.score + ' ', 20, this.gameOverGroup);
-        var bestScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 35, 343, 'flappy_font', game.bestScore + ' ', 20, this.gameOverGroup);
+        var currentScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 62, 306, 'flappy_font', this.score + ' ', 20, this.gameOverGroup);
+        var bestScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 62, 344, 'flappy_font', game.bestScore + ' ', 20, this.gameOverGroup);
         var replayBtn = game.add.button(WINDOW_WIDTH * 5 / 6, 90, 'replayBtn', function () { // 重玩按钮
             currentHurtSound.stop();
             currentHurtSound = null;

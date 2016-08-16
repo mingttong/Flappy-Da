@@ -1,15 +1,18 @@
 /**
  * Created by lenovo on 2016/8/10.
  */
+
+console.log('Flappy-Da!');
+
 var SCORESOUNDS_NUM = 18,
     HURTSOUNDS_NUM = 15,
     WINDOW_WIDTH = 480,
     WINDOW_HEIGHT = 700,
-    SPEED = 390;
-GRAVITY = 2000,
-    FLYSPEED = -610,
-    XUEQIAN_WIDTH = 73,
-    XUEQIAN_HEIGHT = 83,
+    SPEED = 390,
+    GRAVITY = 3000,
+    FLYSPEED = -700,
+    XUEQIAN_WIDTH = 80,
+    XUEQIAN_HEIGHT = 91,
     TITLE_WIDTH = 0,
     TITLE_HEIGHT = 0,
     GROUND_HEIGHT = 112,
@@ -162,7 +165,7 @@ game.States.menu = function () {
 
         var titleGroup = game.add.group(); // 创建存放标题的组
         var title = titleGroup.create(0, 0, 'title'); // 通过组的create方法创建标题图片并添加到组里
-        var bird = titleGroup.create((title.width - XUEQIAN_WIDTH) / 2, title.height + 30, 'bird', 1); // 创建bird对象并添加到组里
+        var bird = titleGroup.create((title.width - XUEQIAN_WIDTH) / 2, title.height + 30, 'bird', 0); // 创建bird对象并添加到组里
         var titl_y = WINDOW_HEIGHT / 5;
         titleGroup.x = (WINDOW_WIDTH - title.width) / 2; // 调整组的水平位置
         titleGroup.y = titl_y; // 调整组的垂直位置
@@ -199,7 +202,7 @@ function randomPlaySound(list, sounds_num) {
 
     } else if (sounds_num > 1) {
 
-        sound = list[selectFrom(1, sounds_num)];
+        sound = list[selectFrom(1, sounds_num) - 1];
         sound.play();
 
     }
@@ -294,18 +297,13 @@ game.States.play = function () {
         // 来一个夸张的下落
         if (this.gameIsOver) {
 
-            this.bird.frame = 2;
-            this.bird.angle = -30;
-
-        } else if (this.bird.body.velocity.y > 0) {
-
-            this.bird.frame = 0;
-            this.bird.angle = 0;
+            this.bird.frame = 1;
+            //this.bird.angle = 0;
 
         } else {
 
-            this.bird.frame = 1;
-            this.bird.angle = 0;
+            this.bird.frame = 0;
+            //this.bird.angle = 0;
 
         }
 
@@ -392,7 +390,7 @@ game.States.play = function () {
         var scoreboard = this.gameOverGroup.create(WINDOW_WIDTH / 2, 100, 'score_board'); // 分数板
         var currentScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 35, 305, 'flappy_font', this.score + ' ', 20, this.gameOverGroup);
         var bestScoreText = game.add.bitmapText(WINDOW_WIDTH / 2 + 35, 343, 'flappy_font', game.bestScore + ' ', 20, this.gameOverGroup);
-        var replayBtn = game.add.button(WINDOW_WIDTH * 4 / 5, 90, 'replayBtn', function () { // 重玩按钮
+        var replayBtn = game.add.button(WINDOW_WIDTH * 5 / 6, 90, 'replayBtn', function () { // 重玩按钮
             currentHurtSound.stop();
             currentHurtSound = null;
             game.state.start('play');
